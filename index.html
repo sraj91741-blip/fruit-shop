@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pazhamuthir Cholai - Fresh Fruits</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: linear-gradient(
+        135deg,
+        #d4fc79,
+        #96e6a1,
+        #a1c4fd,
+        #fbc2eb,
+        #f6d365,
+        #fda085
+    );
+    background-size: 400% 400%;
+    animation: colorfulBackground 15s ease infinite;
+}
+
+@keyframes colorfulBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+
+header {
+    background: rgba(255,255,255,0.95);
+    padding: 17px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px #0002;
+}
+
+.logo {
+    color: #198754;
+    font-size: 23px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #198754;
+}
+
+#menu {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 28px;
+    color: #198754;
+    cursor: pointer;
+}
+
+/* PAGE CONTENT */
+
+.page {
+    display: none;
+    min-height: 80vh;
+    padding: 60px 8%;
+    animation: fadeUp 0.7s ease;
+}
+
+body:has(#home:target) #home,
+body:has(#categories:target) #categories,
+body:has(#products:target) #products,
+body:has(#services:target) #services,
+body:has(#offers:target) #offers,
+body:has(#gallery:target) #gallery,
+body:has(#about:target) #about,
+body:has(#testimonials:target) #testimonials,
+body:has(#contact:target) #contact {
+    display: block;
+}
+
+body:not(:has(.page:target)) #home {
+    display: block;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 35px;
+    background: linear-gradient(
+        90deg,
+        #ff512f,
+        #dd2476,
+        #7b2ff7,
+        #2193b0
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* HOME */
+
+.hero {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    color: #14532d;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.hero-image {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #0003;
+}
+
+.slider {
+    display: flex;
+    width: 300%;
+    animation: slide 12s infinite;
+}
+
+.slider img {
+    width: 33.333%;
+    height: 370px;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0%, 28% { transform: translateX(0); }
+    33%, 61% { transform: translateX(-33.333%); }
+    66%, 94% { transform: translateX(-66.666%); }
+    100% { transform: translateX(0); }
+}
+
+.btn {
+    display: inline-block;
+    background: #198754;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background: #14532d;
+    color: white;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    border: none;
+    padding: 18px;
+    border-radius: 17px;
+    text-align: center;
+    box-shadow: 0 5px 20px #0002;
+    transition: 0.4s;
+    animation: fadeUp 1s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card h3 {
+    color: #198754;
+    margin: 15px 0;
+}
+
+.price {
+    color: #e05b26;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* SERVICES */
+
+.service-icon {
+    font-size: 45px;
+    color: #198754;
+}
+
+/* OFFER */
+
+.offer-box {
+    background: linear-gradient(120deg, #ff9966, #ff5e62, #ffc371);
+    color: white;
+    padding: 45px 25px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+/* ABOUT */
+
+.about-box, .contact-box, .review-box {
+    background: rgba(255,255,255,0.95);
+    padding: 35px;
+    border-radius: 20px;
+    line-height: 1.9;
+    box-shadow: 0 5px 20px #0002;
+}
+
+/* GALLERY */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.4s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* NAVIGATION */
+
+.page-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #14532d;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer p {
+    margin: 8px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 24px;
+    margin: 10px;
+}
+
+/* MOBILE */
+
+@media(max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    #menu:checked ~ nav {
+        display: flex;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .slider img {
+        height: 250px;
+    }
+
+    .page {
+        padding: 40px 5%;
+    }
+
+    .page-navigation {
+        flex-direction: column;
+    }
+
+    .page-navigation .btn {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION BAR -->
+
+<header>
+    <a href="#home" class="logo">
+        <i class="bi bi-flower1"></i> Pazhamuthir Cholai
+    </a>
+
+    <input type="checkbox" id="menu">
+    <label for="menu" class="menu-icon">
+        <i class="bi bi-list"></i>
+    </label>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#services">Services</a>
+        <a href="#offers">Offers</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+
+<!-- PAGE 1: HOME -->
+
+<section class="page" id="home">
+
+    <div class="hero">
+
+        <div class="hero-content">
+            <h1>Welcome to<br>Pazhamuthir Cholai</h1>
+
+            <h2 style="color:#e05b26">
+                Fresh Fruits, Healthy Life!
+            </h2>
+
+            <p>
+                Enjoy fresh, healthy and delicious fruits
+                every day. We bring nature's goodness
+                directly to your home.
+            </p>
+
+            <a href="#products" class="btn">
+                Explore Products <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <div class="slider">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=900" alt="Fresh fruits">
+                <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=900" alt="Fruit collection">
+                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=900" alt="Fresh oranges">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <span></span>
+        <a href="#categories" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 2: CATEGORIES -->
+
+<section class="page" id="categories">
+
+    <h1 class="section-title">Our Fruit Categories</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500" alt="Apples">
+            <h3>Fresh Fruits</h3>
+            <p>Fresh and delicious everyday fruits.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=500" alt="Citrus fruits">
+            <h3>Citrus Fruits</h3>
+            <p>Vitamin-rich citrus fruit collections.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500" alt="Seasonal fruits">
+            <h3>Seasonal Fruits</h3>
+            <p>Enjoy delicious seasonal fruits.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=500" alt="Organic fruits">
+            <h3>Organic Fruits</h3>
+            <p>Healthy and naturally grown fruits.</p>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#home" class="btn">← Previous Page</a>
+        <a href="#products" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 3: PRODUCTS -->
+
+<section class="page" id="products">
+
+    <h1 class="section-title">Our Fresh Products</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500" alt="Apples">
+            <h3>Fresh Apples</h3>
+            <p class="price">₹150 / kg</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500" alt="Bananas">
+            <h3>Bananas</h3>
+            <p class="price">₹60 / dozen</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=500" alt="Oranges">
+            <h3>Oranges</h3>
+            <p class="price">₹100 / kg</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=500" alt="Mangoes">
+            <h3>Mangoes</h3>
+            <p class="price">₹120 / kg</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=500" alt="Pineapple">
+            <h3>Pineapple</h3>
+            <p class="price">₹80 / piece</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?w=500" alt="Grapes">
+            <h3>Grapes</h3>
+            <p class="price">₹90 / kg</p>
+            <a href="#contact" class="btn">Enquire Now</a>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#categories" class="btn">← Previous Page</a>
+        <a href="#services" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 4: SERVICES -->
+
+<section class="page" id="services">
+
+    <h1 class="section-title">Our Services</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <i class="bi bi-truck service-icon"></i>
+            <h3>Fast Delivery</h3>
+            <p>Fresh fruits delivered to your doorstep.</p>
+        </div>
+
+        <div class="card">
+            <i class="bi bi-basket service-icon"></i>
+            <h3>Fresh Quality</h3>
+            <p>Carefully selected quality fruits.</p>
+        </div>
+
+        <div class="card">
+            <i class="bi bi-currency-rupee service-icon"></i>
+            <h3>Affordable Prices</h3>
+            <p>Quality fruits at reasonable prices.</p>
+        </div>
+
+        <div class="card">
+            <i class="bi bi-heart-pulse service-icon"></i>
+            <h3>Healthy Lifestyle</h3>
+            <p>Nutritious fruits for a healthy lifestyle.</p>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#products" class="btn">← Previous Page</a>
+        <a href="#offers" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 5: OFFERS -->
+
+<section class="page" id="offers">
+
+    <h1 class="section-title">Special Offers</h1>
+
+    <div class="offer-box">
+        <h1 style="color:white">Fresh Fruit Festival!</h1>
+        <h2 style="color:white">Up to 20% OFF</h2>
+        <p>Enjoy special prices on selected fruit collections.</p>
+        <a href="#products" class="btn" style="background:white;color:#e05b26">
+            Explore Products
+        </a>
+    </div>
+
+    <br><br>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Family Fruit Pack</h3>
+            <p>Enjoy a mixed fruit collection for your family.</p>
+            <p class="price">Starting ₹299</p>
+        </div>
+
+        <div class="card">
+            <h3>Healthy Fruit Pack</h3>
+            <p>A delicious selection of nutritious fruits.</p>
+            <p class="price">Starting ₹399</p>
+        </div>
+
+        <div class="card">
+            <h3>Weekend Special</h3>
+            <p>Special fruit combos for your weekend.</p>
+            <p class="price">Starting ₹249</p>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#services" class="btn">← Previous Page</a>
+        <a href="#gallery" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 6: GALLERY -->
+
+<section class="page" id="gallery">
+
+    <h1 class="section-title">Our Fruit Gallery</h1>
+
+    <div class="gallery-grid">
+
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500" alt="Fruit collection">
+        <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500" alt="Fresh fruit">
+        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=500" alt="Orange fruits">
+        <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500" alt="Apples">
+        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500" alt="Bananas">
+        <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=500" alt="Citrus fruits">
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#offers" class="btn">← Previous Page</a>
+        <a href="#about" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 7: ABOUT -->
+
+<section class="page" id="about">
+
+    <div class="about-box">
+
+        <h1 class="section-title">About Pazhamuthir Cholai</h1>
+
+        <p>
+            Pazhamuthir Cholai is committed to providing
+            fresh, nutritious and delicious fruits to our
+            customers. We believe that healthy food is
+            the foundation of a happy life.
+        </p>
+
+        <p>
+            We carefully select our fruits to provide
+            the best quality, freshness and taste.
+            Our goal is to make fruit shopping simple,
+            convenient and affordable.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            To provide fresh and high-quality fruits
+            to every customer and promote healthy eating.
+        </p>
+
+        <h2>Our Vision</h2>
+        <p>
+            To become a trusted destination for fresh
+            fruit shopping.
+        </p>
+
+        <h2>Why Choose Us?</h2>
+        <p>
+            Fresh products, affordable prices, quality
+            service and customer satisfaction.
+        </p>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#gallery" class="btn">← Previous Page</a>
+        <a href="#testimonials" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 8: TESTIMONIALS -->
+
+<section class="page" id="testimonials">
+
+    <h1 class="section-title">Customer Reviews</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Happy Customer</h3>
+            <p style="color:#f5a623">★★★★★</p>
+            <p>"Excellent fruit quality and very fresh products."</p>
+        </div>
+
+        <div class="card">
+            <h3>Regular Customer</h3>
+            <p style="color:#f5a623">★★★★★</p>
+            <p>"Good prices and convenient delivery service."</p>
+        </div>
+
+        <div class="card">
+            <h3>Fruit Lover</h3>
+            <p style="color:#f5a623">★★★★★</p>
+            <p>"A wonderful place to buy fresh fruits."</p>
+        </div>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#about" class="btn">← Previous Page</a>
+        <a href="#contact" class="btn">Next Page →</a>
+    </div>
+
+</section>
+
+
+<!-- PAGE 9: CONTACT -->
+
+<section class="page" id="contact">
+
+    <h1 class="section-title">Contact Us</h1>
+
+    <div class="contact-box">
+
+        <p>
+            <i class="bi bi-telephone-fill text-success"></i>
+            <strong> Phone:</strong> +91 98765 43210
+        </p>
+
+        <p>
+            <i class="bi bi-envelope-fill text-success"></i>
+            <strong> Email:</strong> info@pazhamuthircholai.com
+        </p>
+
+        <p>
+            <i class="bi bi-geo-alt-fill text-success"></i>
+            <strong> Address:</strong> Tamil Nadu, India
+        </p>
+
+        <p>
+            <i class="bi bi-clock-fill text-success"></i>
+            <strong> Opening Hours:</strong> 8:00 AM - 9:00 PM
+        </p>
+
+        <a href="mailto:info@pazhamuthircholai.com" class="btn">
+            <i class="bi bi-envelope"></i> Send Email
+        </a>
+
+    </div>
+
+    <div class="page-navigation">
+        <a href="#testimonials" class="btn">← Previous Page</a>
+        <a href="#home" class="btn">Back to Home ↑</a>
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>Pazhamuthir Cholai 🍎</h3>
+
+    <p>Fresh Fruits, Healthy Life!</p>
+
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-whatsapp"></i></a>
+    </div>
+
+    <p>© 2026 Pazhamuthir Cholai. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
